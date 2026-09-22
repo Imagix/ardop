@@ -338,7 +338,11 @@ void print_win32_err(void)
 
 
 char * HIDDevice = 0;
+#ifdef WIN32
 hid_device * CM108Handle = 0;
+#else
+int CM108Handle = 0;
+#endif
 unsigned char HIDRXBuffer[100];
 int HIDRXLen = 0;
 unsigned char HIDTXBuffer[100];
