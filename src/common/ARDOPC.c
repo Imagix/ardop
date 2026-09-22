@@ -56,7 +56,7 @@ BOOL SerialHostInit();
 void SerialHostPoll();
 void TCPHostPoll();
 BOOL MainPoll();
-void PlatformSleep();
+void PlatformSleep(int mS);
 const char* PlatformSignalAbbreviation(int signal);
 BOOL BusyDetect2(float * dblMag, int intStart, int intStop);
 BOOL IsPingToMe(const StationId* caller, const StationId* target);

@@ -209,7 +209,7 @@ void GetSemaphore();
 void FreeSemaphore();
 const char * Name(UCHAR bytID);
 const char * shortName(UCHAR bytID);
-int InitSound();
+int InitSound(BOOL Quiet);
 void initFilter(int Width, int centerFreq);
 void FourierTransform(int NumSamples, float * RealIn, float * RealOut, float * ImagOut, int InverseTransform);
 VOID LostHost();

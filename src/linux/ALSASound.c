@@ -101,7 +101,7 @@ char PlaybackDevice[80] = "ARDOP";
 char * CaptureDevices = CaptureDevice;
 char * PlaybackDevices = CaptureDevice;
 
-int InitSound();
+int InitSound(BOOL Quiet);
 
 int Ticks;
 

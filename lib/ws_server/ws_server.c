@@ -908,7 +908,7 @@ int sendHttpErr(const char *errstr, const char *uri, int s_cnum) {
 //  sent that will be retried.
 // Return -1 for a bad or unexpected request.
 // Return -2 for an unexpected failure while processing a request.
-int process_http_req(){
+int process_http_req(const int cnum){
 	const int BUFLEN = 1024;
 	char http_buf[BUFLEN];
 	char uri[WS_URILEN];
