@@ -24,8 +24,12 @@
 #			-DTXT2C=$PWD/txt2c
 #		cmake --build build-win
 
-cmake_minimum_required(VERSION 3.16)
-project(ardopcf C)
+cmake_minimum_required(VERSION 3.20)
+project(ardopcf C CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # The Makefile builds with -g and no optimization
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -115,7 +119,7 @@ target_include_directories(ardop_objs PUBLIC src lib)
 target_link_libraries(ardop_objs PUBLIC m Threads::Threads ${ARDOP_PLATFORM_LIBS})
 
 # user-facing executables, like ardopcf
-add_executable(ardopcf src/common/ardopcf.c)
+add_executable(ardopcf src/common/ardopcf.cpp)
 target_link_libraries(ardopcf PRIVATE ardop_objs)
 target_link_options(ardopcf PRIVATE "LINKER:-Map=${CMAKE_CURRENT_BINARY_DIR}/output.map")
 
