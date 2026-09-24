@@ -659,7 +659,7 @@ void ardopmain()
 	blnTimeoutTriggered = FALSE;
 	SetARDOPProtocolState(DISC);
 
-	if (!InitSound())
+	if (!InitSound(TRUE))
 	{
 		ZF_LOGF("Error in InitSound().  Stopping ardop.");
 		return;
