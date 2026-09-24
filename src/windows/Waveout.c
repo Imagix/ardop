@@ -17,8 +17,6 @@
 #include "rockliff/rrs.h"
 
 #pragma comment(lib, "winmm.lib")
-void printtick(char * msg);
-void PollReceivedSamples();
 
 HANDLE OpenCOMPort(VOID * pPort, int speed, BOOL SetDTR, BOOL SetRTS, BOOL Quiet, int Stopbits);
 VOID COMSetDTR(HANDLE fd);
@@ -31,6 +29,7 @@ void DecodeCM108(char * ptr);
 #include <math.h>
 
 #include "common/ardopcommon.h"
+#include "common/platformapi.hpp"
 
 void GetSoundDevices();
 
@@ -103,11 +102,9 @@ WAVEINCAPS pwic;
 int add_noise(short *samples, unsigned int nSamples, short stddev);
 short InputNoiseStdDev = 0;
 
-int InitSound(BOOL Quiet);
 void HostPoll();
 void TCPHostPoll();
 void SerialHostPoll();
-BOOL WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite);
 void WebguiPoll();
 int wg_send_currentlevel(int cnum, unsigned char level);
 int wg_send_pttled(int cnum, bool isOn);
@@ -530,7 +527,7 @@ FILE * wavfp1;
 
 BOOL DMARunning = FALSE;  // Used to start DMA on first write
 
-short * SendtoCard(unsigned short * buf, int n)
+short * SendtoCard(short * buf, int n)
 {
 	if (txwff != NULL)
 		WriteWav(&buffer[Index][0], n, txwff);
@@ -828,7 +825,7 @@ VOID WriteSamples(short * buffer, int len)
 	fwrite(buffer, 1, len * 2, wavfp1);
 }
 
-unsigned short * SoundInit()
+short * SoundInit()
 {
 	Index = 0;
 	return &buffer[0][0];

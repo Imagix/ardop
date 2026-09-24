@@ -7,6 +7,7 @@
 #endif
 
 #include "common/ARDOPC.h"
+#include "common/platformapi.hpp"
 
 VOID SortSignals2(float * dblMag, int intStartBin, int intStopBin, int intNumBins, float *  dblAVGSignalPerBin, float *  dblAVGBaselinePerBin);
 

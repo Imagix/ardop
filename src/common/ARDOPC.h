@@ -37,9 +37,7 @@ typedef void *HANDLE;
 #define HANDLE int
 #endif
 
-void txSleep(int mS);
 
-unsigned int getTicks();
 
 extern unsigned int pttOnTime;
 
@@ -117,7 +115,6 @@ typedef unsigned char UCHAR;
 #define TRAFFICLED 3
 #define PKTLED 4
 
-BOOL KeyPTT(BOOL State);
 
 UCHAR FrameCode(char * strFrameName);
 BOOL FrameInfo(UCHAR bytFrameType, int * blnOdd, int * intNumCar, char * strMod,
@@ -155,8 +152,6 @@ void displayState(const char * State);
 void displayCall(int dirn, const char * call);
 
 void SampleSink(short Sample);
-void SoundFlush();
-void StopCapture();
 void StartCapture();
 void DiscardOldSamples();
 void ClearAllMixedSamples();
@@ -183,7 +178,6 @@ int EncodeConACKwTiming(UCHAR bytFrameType, int intRcvdLeaderLenMs, UCHAR bytSes
 int EncodePingAck(int bytFrameType, int intSN, int intQuality, UCHAR * bytreturn);
 void SaveQueueOnBreak();
 void Abort();
-void SetLED(int LED, int State);
 VOID ClearBusy();
 VOID CloseCOMPort(HANDLE fd);
 VOID COMClearRTS(HANDLE fd);
@@ -194,7 +188,6 @@ void ProcessNewSamples(short * Samples, int nSamples);
 void ardopmain();
 BOOL GetNextFECFrame();
 void GenerateFSKTemplates();
-void printtick(char * msg);
 void InitValidFrameTypes();
 // #endif
 
@@ -216,19 +209,13 @@ void GetSemaphore();
 void FreeSemaphore();
 const char * Name(UCHAR bytID);
 const char * shortName(UCHAR bytID);
-int InitSound(BOOL Quiet);
 void initFilter(int Width, int centerFreq);
 void FourierTransform(int NumSamples, float * RealIn, float * RealOut, float * ImagOut, int InverseTransform);
 VOID LostHost();
-int ReadCOMBlock(HANDLE fd, char * Block, int MaxLength);
 VOID ProcessDEDModeFrame(UCHAR * rxbuffer, unsigned int Length);
 
 int SendtoGUI(char Type, unsigned char * Msg, int Len);
-void DrawTXFrame(const char * Frame);
-void DrawRXFrame(int State, const char * Frame);
-void mySetPixel(unsigned char x, unsigned char y, unsigned int Colour);
 
-void clearDisplay();
 
 extern int WaterfallActive;
 extern int SpectrumActive;

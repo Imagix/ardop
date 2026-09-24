@@ -41,6 +41,7 @@ int _memicmp(unsigned char *a, unsigned char *b, int n);
 #define MAX_PENDING_CONNECTS 4
 
 #include "common/ARDOPC.h"
+#include "common/platformapi.hpp"
 
 #define GetBuff() _GetBuff(__FILE__, __LINE__)
 #define ReleaseBuffer(s) _ReleaseBuffer(s, __FILE__, __LINE__)
@@ -57,7 +58,6 @@ void ProcessCommandFromHost(char * strCMD);
 BOOL checkcrc16(unsigned char * Data, unsigned short length);
 int ReadCOMBlockEx(HANDLE fd, char * Block, int MaxLength, BOOL * Error);
 VOID ProcessPacketBytes(UCHAR * RXBuffer, int Read);
-int ReadCOMBlock(HANDLE fd, char * Block, int MaxLength );
 
 extern int port;
 

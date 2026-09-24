@@ -4,7 +4,7 @@
  * Invokes the platform-specific main function from either
  * ALSASound.c (Linux) or Waveout.c (Windows)
  */
-extern "C" int platform_main(int argc, char *argv[]);
+#include "common/platformapi.hpp"
 
 int main(int argc, char *argv[])
 {

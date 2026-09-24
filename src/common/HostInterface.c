@@ -3,6 +3,7 @@
 
 #include "common/ARDOPC.h"
 #include "common/ardopcommon.h"
+#include "common/platformapi.hpp"
 
 BOOL blnHostRDY = FALSE;
 extern int intFECFramesSent;
@@ -12,7 +13,6 @@ BOOL CheckForDisconnect();
 int Encode4FSKControl(UCHAR bytFrameType, UCHAR bytSessionID, UCHAR * bytreturn);
 int ComputeInterFrameInterval(int intRequestedIntervalMS);
 HANDLE OpenCOMPort(VOID * pPort, int speed, BOOL SetDTR, BOOL SetRTS, BOOL Quiet, int Stopbits);
-BOOL WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite);
 void SetupGPIOPTT();
 void setProtocolMode(char* strMode);
 

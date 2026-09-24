@@ -34,6 +34,7 @@
 
 #include "common/ardopcommon.h"
 #include "common/wav.h"
+#include "common/platformapi.hpp"
 
 void ProcessCommandFromHost(char * strCMD);
 

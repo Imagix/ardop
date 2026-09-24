@@ -22,6 +22,7 @@
 
 #include "common/ardopcommon.h"
 #include "common/wav.h"
+#include "common/platformapi.hpp"
 #include "rockliff/rrs.h"
 
 #define SHARECAPTURE  // if defined capture device is opened and closed for each transission
@@ -44,7 +45,6 @@ VOID SerialHostPoll();
 VOID TCPHostPoll();
 int CloseSoundCard();
 int PackSamplesAndSend(short * input, int nSamples);
-BOOL WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite);
 VOID processargs(int argc, char * argv[]);
 int wg_send_currentlevel(int cnum, unsigned char level);
 int wg_send_pttled(int cnum, bool isOn);
@@ -101,7 +101,6 @@ char PlaybackDevice[80] = "ARDOP";
 char * CaptureDevices = CaptureDevice;
 char * PlaybackDevices = CaptureDevice;
 
-int InitSound(BOOL Quiet);
 
 int Ticks;
 
@@ -1754,7 +1753,7 @@ VOID WriteSamples(short * buffer, int len)
 #endif
 }
 
-unsigned short * SoundInit()
+short * SoundInit()
 {
 	Index = 0;
 	return &buffer[0][0];

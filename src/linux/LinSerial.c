@@ -12,9 +12,9 @@
 #include <unistd.h>
 
 #include "common/log.h"
+#include "common/platformapi.hpp"
 
 void Debugprintf(const char * format, ...);
-int WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite);
 
 extern HANDLE hCATDevice;  // port for Rig Control
 extern char HostPort[80];
@@ -109,7 +109,7 @@ HANDLE OpenCOMPort(void * Port, int speed, int SetDTR, int SetRTS, int Quiet, in
 	return fd;
 }
 
-int WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite)
+BOOL WriteCOMBlock(HANDLE fd, char * Block, int BytesToWrite)
 {
 	// Some systems seem to have a very small max write size
 

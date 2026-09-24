@@ -14,6 +14,7 @@
 #include <time.h>
 
 #include "common/ARDOPC.h"
+#include "common/platformapi.hpp"
 
 extern unsigned int PKTLEDTimer;
 extern UCHAR bytData[];
@@ -47,8 +48,6 @@ UCHAR bytLastARQDataFrameSent = 0;  // initialize to an improper data frame
 UCHAR bytLastARQDataFrameAcked = 0;  // initialize to an improper data frame
 void ClearTuningStats();
 void ClearQualityStats();
-void updateDisplay();
-void DrawTXMode(const char * TXMode);
 
 int bytQDataInProcessLen = 0;  // Length of frame to send/last sent
 

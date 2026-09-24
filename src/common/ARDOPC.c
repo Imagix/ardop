@@ -32,6 +32,7 @@ const char ProductName[] = "ardopcf";
 #include "common/ARDOPC.h"
 #include "common/Locator.h"
 #include "common/StationId.h"
+#include "common/platformapi.hpp"
 #include "rockliff/rrs.h"
 
 UCHAR bytDataToSend[DATABUFFERSIZE];
@@ -48,7 +49,6 @@ extern StationId LastDecodedStationTarget;
 
 void GetTwoToneLeaderWithSync(int intSymLen);
 bool SendID(const StationId * id, char * reason);
-void PollReceivedSamples();
 void CheckTimers();
 BOOL GetNextARQFrame();
 BOOL TCPHostInit();
@@ -56,8 +56,6 @@ BOOL SerialHostInit();
 void SerialHostPoll();
 void TCPHostPoll();
 BOOL MainPoll();
-void PlatformSleep(int mS);
-const char* PlatformSignalAbbreviation(int signal);
 BOOL BusyDetect2(float * dblMag, int intStart, int intStop);
 BOOL IsPingToMe(const StationId* caller, const StationId* target);
 

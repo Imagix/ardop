@@ -7,6 +7,7 @@
 
 #include "common/ARDOPC.h"
 #include "common/wav.h"
+#include "common/platformapi.hpp"
 
 // pttOnTime is used both as a reference for how long audio has been playing
 // and as an indication of whether or not any transmissions have been made
@@ -33,7 +34,6 @@ int wg_send_txframet(int cnum, const char *frame);
 
 int intSoftClipCnt = 0;
 
-void StartTxWav();
 void Flush();
 
 void GetTwoToneLeaderWithSync(int intSymLen)
@@ -666,10 +666,8 @@ int Number = 0;  // Number waiting to be sent
 
 extern unsigned short buffer[2][1200];
 
-unsigned short * DMABuffer;
+short * DMABuffer;
 
-unsigned short * SendtoCard(unsigned short * buf, int n);
-unsigned short * SoundInit();
 
 // initFilter is called to set up each packet. It selects filter width
 

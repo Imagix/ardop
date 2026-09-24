@@ -9,6 +9,7 @@
 #include "common/Locator.h"
 #include "common/RXO.h"
 #include "common/sdft.h"
+#include "common/platformapi.hpp"
 #include "rockliff/rrs.h"
 
 #pragma warning(disable : 4244)  // Code does lots of float to int
@@ -32,10 +33,7 @@ extern unsigned int PKTLEDTimer;
 
 void SendFrametoHost(unsigned char *data, unsigned dlen);
 
-void clearDisplay();
-void updateDisplay();
 
-void DrawAxes(int Qual, char * Mode);
 
 void PassFECErrDataToHost();
 
@@ -51,7 +49,6 @@ extern BOOL blnBREAKCmd;
 extern UCHAR bytLastACKedDataFrameType;
 extern int intARQDefaultDlyMs;
 extern unsigned int tmrFinalID;
-void DrawDecode(char * Decode);
 
 int wg_send_rxframet(int cnum, unsigned char state, const char *frame);
 int wg_send_quality(int cnum, unsigned char quality,

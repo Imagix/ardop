@@ -20,9 +20,13 @@
 #		gcc lib/txt2c/txt2c.c -o txt2c
 #		cmake -B build-win \
 #			-DCMAKE_SYSTEM_NAME=Windows \
-#			-DCMAKE_C_COMPILER=i686-w64-mingw32-gcc-posix \
-#			-DTXT2C=$PWD/txt2c
+#			-DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc-posix \
+#			-DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++-posix \
+#			-DTXT2C=$PWD/txt2c \
+#			-DBUILD_TESTING=OFF
 #		cmake --build build-win
+#	For a 32-bit build, use the i686-w64-mingw32-*-posix compilers instead.
+#	BUILD_TESTING=OFF prevents picking up the host's (Linux) cmocka.
 
 cmake_minimum_required(VERSION 3.20)
 project(ardopcf C CXX)
@@ -122,6 +126,10 @@ target_link_libraries(ardop_objs PUBLIC m Threads::Threads ${ARDOP_PLATFORM_LIBS
 add_executable(ardopcf src/common/ardopcf.cpp)
 target_link_libraries(ardopcf PRIVATE ardop_objs)
 target_link_options(ardopcf PRIVATE "LINKER:-Map=${CMAKE_CURRENT_BINARY_DIR}/output.map")
+if(MINGW)
+	# Don't require libgcc/libstdc++ DLLs alongside ardopcf.exe
+	target_link_options(ardopcf PRIVATE -static-libgcc -static-libstdc++)
+endif()
 
 # unit tests (the Makefile's `make buildtest` / `make test`)
 include(CTest)

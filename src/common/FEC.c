@@ -1,6 +1,7 @@
 //	ARDOP Modem Decode Sound Samples
 
 #include "common/ARDOPC.h"
+#include "common/platformapi.hpp"
 
 extern BOOL blnAbort;
 
